@@ -1,0 +1,4649 @@
+{
+ "generated": {
+  "by": "web/tools/gen_looks.py",
+  "at": "2026-11-18T22:48:49+00:00",
+  "binary": "FilmBench.app/Contents/MacOS/FilmBench",
+  "binarySha256": "3476f6c10ce0d8a8839b008c7b0a6839f7d5c448d7c5b17aa21f313e0f0ec199",
+  "excludedProcesses": [
+   "digital"
+  ]
+ },
+ "groups": [
+  "Colour negative",
+  "Slide",
+  "Black and white",
+  "Cine negative + print",
+  "Digital",
+  "User"
+ ],
+ "filmFormatsMM": {
+  "8mm": 4.8,
+  "16mm": 10.26,
+  "35mm": 36.0,
+  "65mm": 52.48
+ },
+ "basicControls": [
+  {
+   "id": "strength",
+   "key": "look.strength",
+   "label": "Strength",
+   "kind": "slider",
+   "min": 0.0,
+   "max": 1.0,
+   "unit": "percentOfRange",
+   "help": "How much of the look is applied. 0 % shows your picture unchanged, 100 % the full look."
+  },
+  {
+   "id": "exposure",
+   "key": "input.exposure",
+   "label": "Exposure",
+   "kind": "slider",
+   "min": -3.0,
+   "max": 3.0,
+   "unit": "stops",
+   "help": "Makes the whole picture brighter or darker, in photographic stops."
+  },
+  {
+   "id": "contrast",
+   "key": "finish.contrast",
+   "label": "Contrast",
+   "kind": "slider",
+   "min": 0.5,
+   "max": 1.5,
+   "unit": "relativePercent",
+   "help": "Pushes darks darker and lights lighter, or flattens them for a softer picture."
+  },
+  {
+   "id": "warmth",
+   "key": "input.temperature",
+   "label": "Warmth",
+   "kind": "slider",
+   "min": -1.0,
+   "max": 1.0,
+   "unit": "signedHundred",
+   "help": "Shifts colours towards orange (warmer) or blue (cooler), like a white balance setting."
+  },
+  {
+   "id": "tint",
+   "key": "input.tint",
+   "label": "Tint",
+   "kind": "slider",
+   "min": -1.0,
+   "max": 1.0,
+   "unit": "signedHundred",
+   "help": "Shifts colours towards magenta or green, to fix colour casts from lamps or shade."
+  },
+  {
+   "id": "saturation",
+   "key": "finish.saturation",
+   "label": "Saturation",
+   "kind": "slider",
+   "min": 0.0,
+   "max": 2.0,
+   "unit": "relativePercent",
+   "help": "Makes colours richer, or paler down to black and white at -100 %."
+  },
+  {
+   "id": "fade",
+   "key": "finish.blackPoint",
+   "label": "Fade",
+   "kind": "slider",
+   "min": 0.0,
+   "max": 0.1,
+   "unit": "percentOfRange",
+   "help": "Lifts the blacks to a milky grey, like an old faded print."
+  },
+  {
+   "id": "grain",
+   "key": "grain.amount",
+   "label": "Grain",
+   "kind": "slider",
+   "min": 0.0,
+   "max": 0.1,
+   "unit": "percentOfRange",
+   "help": "How strong the film grain texture is. 0 % turns it off in effect."
+  },
+  {
+   "id": "grainSize",
+   "key": "grain.size",
+   "label": "Grain size",
+   "kind": "slider",
+   "min": 2.0,
+   "max": 25.0,
+   "unit": "percentOfRange",
+   "help": "Fine or coarse grain clumps. Larger grain looks like faster, more sensitive film."
+  },
+  {
+   "id": "filmSize",
+   "key": "grain.format",
+   "label": "Film size",
+   "kind": "choice",
+   "options": [
+    {
+     "label": "Super 8",
+     "value": "8mm"
+    },
+    {
+     "label": "16 mm",
+     "value": "16mm"
+    },
+    {
+     "label": "35 mm",
+     "value": "35mm"
+    },
+    {
+     "label": "65 mm",
+     "value": "65mm"
+    }
+   ],
+   "help": "Smaller film is enlarged more, so its grain looks bigger in the picture."
+  },
+  {
+   "id": "halation",
+   "key": "halation.strength",
+   "label": "Halation",
+   "kind": "slider",
+   "min": 0.0,
+   "max": 3.0,
+   "unit": "percentOfRange",
+   "help": "A red-orange glow around bright lights, as on film when light bounces back off the base."
+  },
+  {
+   "id": "glow",
+   "key": "bloom.amount",
+   "label": "Glow",
+   "kind": "slider",
+   "min": 0.0,
+   "max": 0.5,
+   "unit": "percentOfRange",
+   "help": "A soft white haze around bright areas, like a lens with a little mist on it."
+  },
+  {
+   "id": "vignette",
+   "key": "finish.vignette",
+   "label": "Vignette",
+   "kind": "slider",
+   "min": 0.0,
+   "max": 1.0,
+   "unit": "percentOfRange",
+   "help": "Darkens the corners to draw the eye to the middle of the picture."
+  }
+ ],
+ "looks": [
+  {
+   "name": "Portra 400 style",
+   "group": "Colour negative",
+   "basis": "data",
+   "info": "Portra 400 is a fine-grain ISO 400 portrait colour negative; the look gives soft contrast, gentle highlights and natural skin. Tone curves and colour response follow Kodak's published data (characteristic curves, spectral sensitivities); interlayer effects, grain and halation are tuned by eye. Its tuned split tone warms the highlights, so 90 % white shows warm (blue about 13 % below red).",
+   "settings": {
+    "bloom": {
+     "amount": 0.1,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.08,
+     "curve": {
+      "dmin": [
+       0.2223,
+       0.6438,
+       0.8613
+      ],
+      "gamma": [
+       0.5513,
+       0.563,
+       0.6401
+      ],
+      "shoulder": [
+       2.8,
+       2.4,
+       2.85
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.2162,
+       -1.2784,
+       -1.4097
+      ],
+      "toeSoftness": 0.1508
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.846044,
+      0.125644,
+      0.028313,
+      0.023516,
+      0.850952,
+      0.125532,
+      0.053931,
+      0.101536,
+      0.844533
+     ],
+     "midContrast": 1.004149327508209,
+     "printingScaleChannels": [
+      1.02122,
+      1,
+      0.87955
+     ],
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 0.95,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.03,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 9
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.2,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.625,
+      2.625,
+      2.625
+     ],
+     "highlightTint": [
+      1.06,
+      1,
+      0.9
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Portra 160 style",
+   "group": "Colour negative",
+   "basis": "data",
+   "info": "Portra 160 is a very fine-grain ISO 160 portrait colour negative; the look is low in contrast with muted, natural colour. Tone curves and colour response follow Kodak's published data (characteristic curves, spectral sensitivities); interlayer effects, grain and halation are tuned by eye. Its tuned split tone warms the highlights, so 90 % white shows warm (blue about 10 % below red).",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.06,
+     "curve": {
+      "dmin": [
+       0.2049,
+       0.6133,
+       0.8396
+      ],
+      "gamma": [
+       0.5345,
+       0.5488,
+       0.6164
+      ],
+      "shoulder": [
+       1.9339,
+       2.35,
+       2.65
+      ],
+      "shoulderSoftness": 0.35,
+      "shoulderSoftnessChannels": [
+       0.3118,
+       0.35,
+       0.35
+      ],
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.1745,
+       -1.2557,
+       -1.3139
+      ],
+      "toeSoftness": 0.1446
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.825877,
+      0.148325,
+      0.025798,
+      0.021345,
+      0.819448,
+      0.159206,
+      0.047535,
+      0.09046,
+      0.862006
+     ],
+     "midContrast": 0.97839992981575,
+     "printingScaleChannels": [
+      1.02675,
+      1,
+      0.890331
+     ],
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 0.93,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.02,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 7
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.15,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.625,
+      2.625,
+      2.625
+     ],
+     "highlightTint": [
+      1.05,
+      1,
+      0.92
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Ektar 100 style",
+   "group": "Colour negative",
+   "basis": "data",
+   "info": "Ektar 100 is an ISO 100 colour negative with very fine grain; the look is crisp and saturated. Tone curves follow Kodak's published data; colour stays tuned by eye because the colour from Kodak's spectral sensitivities shifts sky hue by 30.9° at +2 stops (limit 30°). Grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.3,
+     "curve": {
+      "dmin": [
+       0.2272,
+       0.6449,
+       0.8567
+      ],
+      "gamma": [
+       0.6181,
+       0.6254,
+       0.6799
+      ],
+      "shoulder": [
+       2.6925,
+       2.7,
+       3.8387
+      ],
+      "shoulderSoftness": 1.0481,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.2083,
+       -1.2495,
+       -1.3846
+      ],
+      "toeSoftness": 0.1547
+     },
+     "enabled": true,
+     "midContrast": 1.034964718765528,
+     "printingScaleChannels": [
+      1.01181,
+      1,
+      0.919841
+     ],
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1.1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.018,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 6
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.15,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.625,
+      2.625,
+      2.625
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Gold 200 style",
+   "group": "Colour negative",
+   "basis": "tuned",
+   "info": "Gold 200 is an ISO 200 consumer colour negative; the look is warm with punchy everyday colour. An approximation tuned by eye; the colour from Kodak's published spectral sensitivities was tried and left out because it lost too much saturation (chroma 0.544 of the tuned look, limit 0.6).",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.18,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.62,
+       0.62,
+       0.62
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 1.1,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1.05,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.035,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 11
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.25,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.7,
+     "gamma": [
+      1.95,
+      1.95,
+      1.95
+     ],
+     "highlightTint": [
+      1.08,
+      1,
+      0.86
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Pro 400H style",
+   "group": "Colour negative",
+   "basis": "tuned",
+   "info": "Pro 400H was a Fujifilm ISO 400 professional colour negative; the look is airy with cool, slightly green-leaning tones. The colour response follows Fujifilm's published spectral sensitivities; tone, interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.1,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.57,
+       0.57,
+       0.57
+      ],
+      "shoulder": [
+       2,
+       2,
+       2
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.876331,
+      0.109546,
+      0.014122,
+      0.009972,
+      0.942232,
+      0.047797,
+      0.030432,
+      0.076641,
+      0.892927
+     ],
+     "midContrast": 1,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 0.88,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.03,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 9
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.2,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      1.85,
+      1.85,
+      1.85
+     ],
+     "highlightTint": [
+      0.97,
+      1.02,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      0.95,
+      1.03,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "CineStill 800T style",
+   "group": "Colour negative",
+   "basis": "tuned",
+   "info": "CineStill 800T is Kodak Vision3 500T cinema film sold for stills without its anti-halation layer; the look is tungsten-balanced with red halos round lights. The colour response follows Kodak's published spectral sensitivities; tone, interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.12,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.15,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.6,
+       0.6,
+       0.6
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.847227,
+      0.111851,
+      0.040922,
+      0.02191,
+      0.928498,
+      0.049593,
+      0.059602,
+      0.14852,
+      0.791878
+     ],
+     "midContrast": 1.1,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.045,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 13
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.012,
+     "strength": 1.8,
+     "threshold": 0.5,
+     "tint": [
+      1,
+      0.25,
+      0.06
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.7,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Velvia 50 style",
+   "group": "Slide",
+   "basis": "data",
+   "info": "Velvia 50 is a Fujifilm slide film famous for landscape work; the look is very saturated with deep blacks. The reversal curve follows Fujifilm's published data, viewed through a display adaptation; deep shadows block up as on the real film. The colour response follows Fujifilm's published spectral sensitivities; interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.3,
+     "curve": {
+      "dmin": [
+       0.0969,
+       0.1126,
+       0.1154
+      ],
+      "gamma": [
+       2.8329,
+       2.8884,
+       2.7572
+      ],
+      "shoulder": [
+       0.2221,
+       0.1631,
+       0.1802
+      ],
+      "shoulderSoftness": 0.3807,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -0.9201,
+       -1.1062,
+       -1.112
+      ],
+      "toeSoftness": 0.1322
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.858538,
+      0.10145,
+      0.040012,
+      0.023365,
+      0.934617,
+      0.042018,
+      0.052289,
+      0.093388,
+      0.854323
+     ],
+     "highlightRecoveryOn": true,
+     "midContrast": 1.1142253089811454,
+     "process": "reversal",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ],
+     "viewingStageOn": true
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1.18,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.015,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 5
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.8,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.12,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Provia 100F style",
+   "group": "Slide",
+   "basis": "data",
+   "info": "Provia 100F is a Fujifilm slide film with neutral colour; the look is clean and moderately saturated. The reversal curve follows Fujifilm's published data, viewed through a display adaptation; deep shadows block up as on the real film. The colour response follows Fujifilm's published spectral sensitivities; interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.22,
+     "curve": {
+      "dmin": [
+       0.0566,
+       0.064,
+       0.0586
+      ],
+      "gamma": [
+       1.9884,
+       2.1508,
+       1.9859
+      ],
+      "shoulder": [
+       0.4911,
+       0.4378,
+       0.4892
+      ],
+      "shoulderSoftness": 0.2881,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.1279,
+       -1.1271,
+       -1.159
+      ],
+      "toeSoftness": 0.1614
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.890788,
+      0.087421,
+      0.021791,
+      0.02989,
+      0.924211,
+      0.045899,
+      0.028699,
+      0.067665,
+      0.903636
+     ],
+     "highlightRecoveryOn": true,
+     "midContrast": 1.0936196625438073,
+     "process": "reversal",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ],
+     "viewingStageOn": true
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.018,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 6
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.8,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.12,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Ektachrome E100 style",
+   "group": "Slide",
+   "basis": "data",
+   "info": "Ektachrome E100 is Kodak's current slide film; the look is clean with cool-neutral colour and fine grain. The reversal curve follows Kodak's published data (the dataset's Ektachrome 100D curves), viewed through a display adaptation; deep shadows block up as on the real film. The colour response follows Kodak's published spectral sensitivities; interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.16,
+     "curve": {
+      "dmin": [
+       -0.0138,
+       -0.0502,
+       -0.0077
+      ],
+      "gamma": [
+       3.2739,
+       3.8639,
+       3.8964
+      ],
+      "shoulder": [
+       -0.014,
+       -0.097,
+       -0.161
+      ],
+      "shoulderSoftness": 0.5114,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -0.9989,
+       -1.0287,
+       -1.117
+      ],
+      "toeSoftness": 0.2257
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.903969,
+      0.072885,
+      0.023145,
+      0.017521,
+      0.939965,
+      0.042514,
+      0.036545,
+      0.077833,
+      0.885622
+     ],
+     "highlightRecoveryOn": true,
+     "midContrast": 1.049143748468872,
+     "process": "reversal",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ],
+     "viewingStageOn": true
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1.04,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.018,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 6
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.8,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.12,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Kodachrome 64 style",
+   "group": "Slide",
+   "basis": "data",
+   "info": "Kodachrome 64 was Kodak's classic slide film, discontinued in 2009; the look has warm reds and dense shadows. The reversal curve follows Kodak's published data, viewed through a display adaptation; deep shadows block up as on the real film. Colour stays tuned by eye: the colour from Kodak's spectral sensitivities lost too much saturation (chroma 0.595 of the tuned look, limit 0.6). Grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.22,
+     "curve": {
+      "dmin": [
+       0.058,
+       0.0831,
+       0.1057
+      ],
+      "gamma": [
+       3.1349,
+       3.1363,
+       2.8568
+      ],
+      "shoulder": [
+       0.2625,
+       0.1499,
+       0.138
+      ],
+      "shoulderSoftness": 0.4246,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -0.8946,
+       -0.9305,
+       -0.9894
+      ],
+      "toeSoftness": 0.2109
+     },
+     "enabled": true,
+     "highlightRecoveryOn": true,
+     "midContrast": 1.0861666351894292,
+     "process": "reversal",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ],
+     "viewingStageOn": true
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1.1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.02,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 7
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.8,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.12,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Tri-X 400 style",
+   "group": "Black and white",
+   "basis": "data",
+   "info": "Tri-X 400 is Kodak's classic fast black-and-white film; the look is gritty with strong mid-tone contrast. Tone curves follow Kodak's published data; colour, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.27,
+      0.62,
+      0.11
+     ],
+     "coupling": 0,
+     "curve": {
+      "dmin": [
+       0.2983,
+       0.2983,
+       0.2983
+      ],
+      "gamma": [
+       0.6054,
+       0.6054,
+       0.6054
+      ],
+      "shoulder": [
+       2.2221,
+       2.2221,
+       2.2221
+      ],
+      "shoulderSoftness": 0.2789,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.0468,
+       -1.0468,
+       -1.0468
+      ],
+      "toeSoftness": 0.2732
+     },
+     "enabled": true,
+     "midContrast": 1.1698200106613472,
+     "printingScaleChannels": [
+      1,
+      1,
+      1
+     ],
+     "process": "blackAndWhite",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1.02,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.055,
+     "channelScale": [
+      1,
+      1,
+      1
+     ],
+     "chroma": 1,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 14
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      1,
+      1
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.7,
+     "gamma": [
+      2.996,
+      2.996,
+      2.996
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Tri-X 400 style, sepia toned",
+   "group": "Black and white",
+   "basis": "tuned",
+   "info": "Tri-X 400 printed and sepia toned; the look has warm brown tones. An approximation tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.27,
+      0.62,
+      0.11
+     ],
+     "coupling": 0,
+     "curve": {
+      "dmin": [
+       0.2,
+       0.2,
+       0.2
+      ],
+      "gamma": [
+       0.68,
+       0.68,
+       0.68
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.6,
+       -1.6,
+       -1.6
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 1.17,
+     "process": "blackAndWhite",
+     "toneAmount": 0.45,
+     "toneColor": [
+      1,
+      0.78,
+      0.6
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.055,
+     "channelScale": [
+      1,
+      1,
+      1
+     ],
+     "chroma": 1,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 14
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      1,
+      1
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.7,
+     "gamma": [
+      2.1,
+      2.1,
+      2.1
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "HP5 Plus style",
+   "group": "Black and white",
+   "basis": "tuned",
+   "info": "HP5 Plus is Ilford's fast black-and-white film; this look is soft with open shadows and visible grain. An approximation tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.58,
+      0.12
+     ],
+     "coupling": 0,
+     "curve": {
+      "dmin": [
+       0.2,
+       0.2,
+       0.2
+      ],
+      "gamma": [
+       0.6,
+       0.6,
+       0.6
+      ],
+      "shoulder": [
+       1.5,
+       1.5,
+       1.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2,
+       -2,
+       -2
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 1.07,
+     "process": "blackAndWhite",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.05,
+     "channelScale": [
+      1,
+      1,
+      1
+     ],
+     "chroma": 1,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 13
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      1,
+      1
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3.3,
+     "gamma": [
+      1.9,
+      1.9,
+      1.9
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "T-Max 100 style",
+   "group": "Black and white",
+   "basis": "tuned",
+   "info": "T-Max 100 is Kodak's fine-grain black-and-white film; this look is smooth and clean. An approximation tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.28,
+      0.6,
+      0.12
+     ],
+     "coupling": 0,
+     "curve": {
+      "dmin": [
+       0.2,
+       0.2,
+       0.2
+      ],
+      "gamma": [
+       0.62,
+       0.62,
+       0.62
+      ],
+      "shoulder": [
+       1.5,
+       1.5,
+       1.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 1.07,
+     "process": "blackAndWhite",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.02,
+     "channelScale": [
+      1,
+      1,
+      1
+     ],
+     "chroma": 1,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 6
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      1,
+      1
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3.3,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Delta 3200 style",
+   "group": "Black and white",
+   "basis": "tuned",
+   "info": "Delta 3200 is Ilford's very fast black-and-white film; this look is dark and very grainy. An approximation tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0,
+     "curve": {
+      "dmin": [
+       0.2,
+       0.2,
+       0.2
+      ],
+      "gamma": [
+       0.55,
+       0.55,
+       0.55
+      ],
+      "shoulder": [
+       1.5,
+       1.5,
+       1.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2,
+       -2,
+       -2
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 1.07,
+     "process": "blackAndWhite",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.09,
+     "channelScale": [
+      1,
+      1,
+      1
+     ],
+     "chroma": 1,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 20
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      1,
+      1
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3.3,
+     "gamma": [
+      1.9,
+      1.9,
+      1.9
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Vision3 500T style + 2383 print style",
+   "group": "Cine negative + print",
+   "basis": "tuned",
+   "info": "Vision3 500T is Kodak's fast tungsten cinema negative, here printed on 2383; the look is the classic modern movie image. An approximation tuned by eye; Kodak's 2383 print curve is fitted but not used, because it blocks the shadows on ordinary pictures.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.002765555555555556
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.2,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.58,
+       0.58,
+       0.58
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 1.12,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.04,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 24.89,
+     "seed": 1,
+     "sizeMicrons": 12
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.005531111111111112,
+     "strength": 0.3,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "highlightTint": [
+      1.05,
+      1,
+      0.92
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      0.92,
+      1.02,
+      1.05
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Vision3 250D style + 2383 print style",
+   "group": "Cine negative + print",
+   "basis": "tuned",
+   "info": "Vision3 250D is Kodak's daylight cinema negative, printed on 2383; the look is a clean, natural movie image. An approximation tuned by eye; Kodak's 2383 print curve is fitted but not used, because it blocks the shadows on ordinary pictures.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.002765555555555556
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.2,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.6,
+       0.6,
+       0.6
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2,
+       -2,
+       -2
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 1.12,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.03,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 24.89,
+     "seed": 1,
+     "sizeMicrons": 10
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.005531111111111112,
+     "strength": 0.25,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "highlightTint": [
+      1.05,
+      1,
+      0.92
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      0.92,
+      1.02,
+      1.05
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Vision3 50D style + 2393 print style",
+   "group": "Cine negative + print",
+   "basis": "tuned",
+   "info": "Vision3 50D is Kodak's finest-grain daylight cinema negative, printed on Premier 2393; the look is rich and very clean. The negative's colour response follows Kodak's published spectral sensitivities; tone, print, interlayer effects, grain and halation are tuned by eye; the published 2393 print curve is not used because its fit misses the tolerance.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.002765555555555556
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.22,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.62,
+       0.62,
+       0.62
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.888296,
+      0.086098,
+      0.025606,
+      0.013821,
+      0.938847,
+      0.047332,
+      0.042506,
+      0.081683,
+      0.87581
+     ],
+     "midContrast": 1.12,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.018,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 24.89,
+     "seed": 1,
+     "sizeMicrons": 7
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.005531111111111112,
+     "strength": 0.2,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.15,
+      2.15,
+      2.15
+     ],
+     "highlightTint": [
+      1.03,
+      1,
+      0.95
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      0.95,
+      1.01,
+      1.03
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Eterna 500 style + 3513 print style",
+   "group": "Cine negative + print",
+   "basis": "tuned",
+   "info": "Eterna 500 was Fujifilm's fast cinema negative, printed on Eterna-CP 3513; the look is soft and muted. The negative's colour response follows Fujifilm's published spectral sensitivities; tone, print, interlayer effects, grain and halation are tuned by eye; the published 3513 print curve is not used because its fit misses the tolerance.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.002765555555555556
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.05,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.55,
+       0.55,
+       0.55
+      ],
+      "shoulder": [
+       2,
+       2,
+       2
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.4,
+       -2.4,
+       -2.4
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.850651,
+      0.12654,
+      0.02281,
+      0.024608,
+      0.936014,
+      0.039377,
+      0.02665,
+      0.092017,
+      0.881333
+     ],
+     "midContrast": 1.12,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 0.82,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.035,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 24.89,
+     "seed": 1,
+     "sizeMicrons": 11
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.005531111111111112,
+     "strength": 0.25,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      0.98,
+      1.02,
+      0.99
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      0.95,
+      1.03,
+      1.01
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Portra 800 style",
+   "group": "Colour negative",
+   "basis": "data",
+   "info": "Portra 800 is Kodak's fastest portrait colour negative; the look is soft and warm with more visible grain. Tone curves and colour response follow Kodak's published data (characteristic curves, spectral sensitivities); interlayer effects, grain and halation are tuned by eye. Its tuned split tone warms the highlights, so 90 % white shows warm (blue about 13 % below red).",
+   "settings": {
+    "bloom": {
+     "amount": 0.1,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.08,
+     "curve": {
+      "dmin": [
+       0.3016,
+       0.6945,
+       1.0152
+      ],
+      "gamma": [
+       0.5179,
+       0.5418,
+       0.6045
+      ],
+      "shoulder": [
+       2.5,
+       2.2,
+       2.8
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.174,
+       -1.2792,
+       -1.1841
+      ],
+      "toeSoftness": 0.1797
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.853455,
+      0.111936,
+      0.034609,
+      0.016493,
+      0.900497,
+      0.08301,
+      0.051512,
+      0.104286,
+      0.844202
+     ],
+     "midContrast": 0.964942302601223,
+     "printingScaleChannels": [
+      1.04615,
+      1,
+      0.896278
+     ],
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 0.95,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1.005
+    },
+    "grain": {
+     "amount": 0.04,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 11
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.2,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.625,
+      2.625,
+      2.625
+     ],
+     "highlightTint": [
+      1.06,
+      1,
+      0.9
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Ultramax 400 style",
+   "group": "Colour negative",
+   "basis": "tuned",
+   "info": "Ultramax 400 is an ISO 400 consumer colour negative; the look is warm and contrasty with noticeable grain. The colour response follows Kodak's published spectral sensitivities; tone, interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.18,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.62,
+       0.62,
+       0.62
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.837549,
+      0.126527,
+      0.035924,
+      0.014093,
+      0.917537,
+      0.06837,
+      0.046932,
+      0.092611,
+      0.860457
+     ],
+     "midContrast": 1.1,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1.05,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.04,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 12
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.25,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.7,
+     "gamma": [
+      1.95,
+      1.95,
+      1.95
+     ],
+     "highlightTint": [
+      1.08,
+      1,
+      0.86
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Superia X-TRA 400 style",
+   "group": "Colour negative",
+   "basis": "data",
+   "info": "Superia X-TRA 400 is a Fujifilm ISO 400 consumer colour negative; the look has cooler greens and crisp contrast. Tone curves follow Fujifilm's published data; colour stays tuned by eye because the colour from Fujifilm's spectral sensitivities shifts sky hue by 31.8° at +2 stops (limit 30°). Grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.18,
+     "curve": {
+      "dmin": [
+       0.1556,
+       0.4451,
+       0.7343
+      ],
+      "gamma": [
+       0.6139,
+       0.6776,
+       0.7695
+      ],
+      "shoulder": [
+       2.55,
+       2.6,
+       4.1136
+      ],
+      "shoulderSoftness": 0.35,
+      "shoulderSoftnessChannels": [
+       0.35,
+       0.35,
+       1.4099
+      ],
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.108,
+       -1.1229,
+       -1.0489
+      ],
+      "toeSoftness": 0.2371
+     },
+     "enabled": true,
+     "midContrast": 1.1983780111514002,
+     "printingScaleChannels": [
+      1.10376,
+      1,
+      0.880572
+     ],
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1.05,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 0.985
+    },
+    "grain": {
+     "amount": 0.035,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 11
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.25,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.625,
+      2.625,
+      2.625
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      0.97,
+      1.02,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Fujicolor C200 style",
+   "group": "Colour negative",
+   "basis": "data",
+   "info": "Fujicolor C200 is an inexpensive ISO 200 colour negative; the look is clean with slightly cool, light colour. Tone curves and colour response follow Fujifilm's published data (characteristic curves, spectral sensitivities); interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.18,
+     "curve": {
+      "dmin": [
+       0.1441,
+       0.411,
+       0.7252
+      ],
+      "gamma": [
+       0.6058,
+       0.6587,
+       0.7162
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       3.8429
+      ],
+      "shoulderSoftness": 0.35,
+      "shoulderSoftnessChannels": [
+       0.35,
+       0.35,
+       1.1905
+      ],
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.1939,
+       -1.2292,
+       -1.238
+      ],
+      "toeSoftness": 0.282
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.849092,
+      0.132007,
+      0.018901,
+      0.01767,
+      0.915209,
+      0.067121,
+      0.047376,
+      0.112051,
+      0.840572
+     ],
+     "midContrast": 1.1599149776991047,
+     "printingScaleChannels": [
+      1.08732,
+      1,
+      0.919715
+     ],
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 0.95,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.035,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 11
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.25,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.625,
+      2.625,
+      2.625
+     ],
+     "highlightTint": [
+      1,
+      1,
+      0.98
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "CineStill 50D style",
+   "group": "Colour negative",
+   "basis": "tuned",
+   "info": "CineStill 50D is Kodak Vision3 50D cinema film sold for stills without its anti-halation layer; the look is fine-grained daylight colour with strong halation. The colour response follows Kodak's published spectral sensitivities; tone, interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.12,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.15,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.6,
+       0.6,
+       0.6
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.888296,
+      0.086098,
+      0.025606,
+      0.013821,
+      0.938847,
+      0.047332,
+      0.042506,
+      0.081683,
+      0.87581
+     ],
+     "midContrast": 1.1,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.025,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 8
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.012,
+     "strength": 1.8,
+     "threshold": 0.5,
+     "tint": [
+      1,
+      0.25,
+      0.06
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.7,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Double-X 5222 style",
+   "group": "Black and white",
+   "basis": "data",
+   "info": "Double-X 5222 is Kodak's black-and-white cinema negative; the look is classic film-noir grey scale with visible grain. Tone curves follow Kodak's published data; colour, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.004
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.27,
+      0.62,
+      0.11
+     ],
+     "coupling": 0,
+     "curve": {
+      "dmin": [
+       0.197,
+       0.197,
+       0.197
+      ],
+      "gamma": [
+       0.6653,
+       0.6653,
+       0.6653
+      ],
+      "shoulder": [
+       1.1967,
+       1.1967,
+       1.1967
+      ],
+      "shoulderSoftness": 0.1576,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -1.1595,
+       -1.1595,
+       -1.1595
+      ],
+      "toeSoftness": 0.2172
+     },
+     "enabled": true,
+     "midContrast": 1.3069444268170471,
+     "printingScaleChannels": [
+      1,
+      1,
+      1
+     ],
+     "process": "blackAndWhite",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.05,
+     "channelScale": [
+      1,
+      1,
+      1
+     ],
+     "chroma": 1,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 36,
+     "seed": 1,
+     "sizeMicrons": 13
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.008,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      1,
+      1
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.7,
+     "gamma": [
+      2.996,
+      2.996,
+      2.996
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Vision3 200T style + 2383 print style",
+   "group": "Cine negative + print",
+   "basis": "tuned",
+   "info": "Vision3 200T is Kodak's medium-speed tungsten cinema negative, printed on 2383; the look is a fine-grained movie image. An approximation tuned by eye; Kodak's 2383 print curve is fitted but not used, because it blocks the shadows on ordinary pictures.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.002765555555555556
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.2,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.58,
+       0.58,
+       0.58
+      ],
+      "shoulder": [
+       2.5,
+       2.5,
+       2.5
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 1.12,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.03,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 24.89,
+     "seed": 1,
+     "sizeMicrons": 10
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.005531111111111112,
+     "strength": 0.3,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "highlightTint": [
+      1.05,
+      1,
+      0.92
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      0.92,
+      1.02,
+      1.05
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.05,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "Ektachrome 100D style",
+   "group": "Slide",
+   "basis": "data",
+   "info": "Ektachrome 100D is Kodak's colour reversal cine film, the same emulsion family as Ektachrome E100, used for Super 8, 16 mm and 35 mm; the look is clean with cool-neutral colour and fine grain. The reversal curve uses the same published curves as the Ektachrome E100 look, which the dataset digitised from Kodak's Ektachrome 100D datasheet, viewed through a display adaptation; deep shadows block up as on the real film. The colour response follows Kodak's published spectral sensitivities; interlayer effects, grain and halation are tuned by eye.",
+   "settings": {
+    "bloom": {
+     "amount": 0.08,
+     "enabled": true,
+     "radius": 0.002765555555555556
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.16,
+     "curve": {
+      "dmin": [
+       -0.0138,
+       -0.0502,
+       -0.0077
+      ],
+      "gamma": [
+       3.2739,
+       3.8639,
+       3.8964
+      ],
+      "shoulder": [
+       -0.014,
+       -0.097,
+       -0.161
+      ],
+      "shoulderSoftness": 0.5114,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -0.9989,
+       -1.0287,
+       -1.117
+      ],
+      "toeSoftness": 0.2257
+     },
+     "enabled": true,
+     "exposureMatrix": [
+      0.903969,
+      0.072885,
+      0.023145,
+      0.017521,
+      0.939965,
+      0.042514,
+      0.036545,
+      0.077833,
+      0.885622
+     ],
+     "highlightRecoveryOn": true,
+     "midContrast": 1.049143748468872,
+     "process": "reversal",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ],
+     "viewingStageOn": true
+    },
+    "finish": {
+     "blackPoint": 0,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 1.04,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.018,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 24.89,
+     "seed": 1,
+     "sizeMicrons": 6
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.005531111111111112,
+     "strength": 0.1,
+     "threshold": 0.65,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 2.8,
+     "gamma": [
+      2,
+      2,
+      2
+     ],
+     "highlightTint": [
+      1,
+      1,
+      1
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      1,
+      1,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.12,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  },
+  {
+   "name": "ORWO NC500 style",
+   "group": "Cine negative + print",
+   "basis": "tuned",
+   "info": "NC500 is ORWO's ISO 400 colour negative cine film from 2022, descended from Agfa; the look is muted and fairly flat, with green-cyan shadows, warm highlights, strong grain and red-orange halos round lights. An approximation tuned by eye; no published data was used.",
+   "settings": {
+    "bloom": {
+     "amount": 0.1,
+     "enabled": true,
+     "radius": 0.002765555555555556
+    },
+    "digital": {
+     "chromaNoise": 0.5,
+     "chromaSubsampling": true,
+     "chromaticAberration": 0.0008,
+     "contrast": 1.15,
+     "dateStamp": false,
+     "dateText": "",
+     "distortion": 0.02,
+     "fringe": 0.2,
+     "headroom": 2.5,
+     "jpegQuality": 85,
+     "megapixels": 5,
+     "noise": 0.25,
+     "noiseReduction": 0.2,
+     "sharpen": 0.8,
+     "sharpenRadius": 1,
+     "smear": 0,
+     "vivid": 0.5
+    },
+    "film": {
+     "bwWeights": [
+      0.3,
+      0.59,
+      0.11
+     ],
+     "coupling": 0.1,
+     "curve": {
+      "dmin": [
+       0.25,
+       0.55,
+       0.8
+      ],
+      "gamma": [
+       0.57,
+       0.57,
+       0.57
+      ],
+      "shoulder": [
+       2,
+       2,
+       2
+      ],
+      "shoulderSoftness": 0.35,
+      "speed": [
+       0,
+       0,
+       0
+      ],
+      "toe": [
+       -2.8,
+       -2.8,
+       -2.8
+      ],
+      "toeSoftness": 0.25
+     },
+     "enabled": true,
+     "midContrast": 0.97,
+     "process": "negativePrint",
+     "toneAmount": 0,
+     "toneColor": [
+      1,
+      0.85,
+      0.7
+     ]
+    },
+    "finish": {
+     "blackPoint": 0.002,
+     "contrast": 1,
+     "enabled": true,
+     "saturation": 0.78,
+     "vignette": 0,
+     "vignetteRadius": 0.5,
+     "whitePoint": 1
+    },
+    "grain": {
+     "amount": 0.045,
+     "channelScale": [
+      0.9,
+      1,
+      1.25
+     ],
+     "chroma": 0.6,
+     "enabled": true,
+     "fixedSeed": false,
+     "formatWidthMM": 24.89,
+     "seed": 1,
+     "sizeMicrons": 11
+    },
+    "halation": {
+     "enabled": true,
+     "knee": 0.15,
+     "radius": 0.007605277777777777,
+     "strength": 0.7,
+     "threshold": 0.55,
+     "tint": [
+      1,
+      0.35,
+      0.08
+     ]
+    },
+    "input": {
+     "exposureEV": 0,
+     "profile": "standard",
+     "temperature": 0,
+     "tint": 0
+    },
+    "look": {
+     "strength": 1
+    },
+    "print": {
+     "brightness": 0,
+     "colorHeadEnabled": true,
+     "cyan": 0,
+     "densityRange": 3,
+     "gamma": [
+      1.85,
+      1.85,
+      1.85
+     ],
+     "highlightTint": [
+      1.04,
+      1,
+      0.93
+     ],
+     "magenta": 0,
+     "shadowTint": [
+      0.92,
+      1.06,
+      1
+     ],
+     "shoulderSoftness": 0.2,
+     "toeSoftness": 0.03,
+     "yellow": 0
+    },
+    "video": {
+     "breath": 0,
+     "enabled": false,
+     "gateWeave": 0
+    }
+   }
+  }
+ ]
+}

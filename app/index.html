@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FilmBench for the web: film looks for your photos and videos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-state="empty">
+<header class="top">
+  <h1>FilmBench</h1>
+  <p class="privacy">Nothing is uploaded: your pictures and videos are processed on this device and never leave it.</p>
+</header>
+
+<p id="no-webgpu" class="notice" hidden>This page needs WebGPU. Use Chrome or Edge 113 or later (tested); Safari 26 and Firefox 141 on Windows have WebGPU but are untested.</p>
+<p id="error" class="notice error" hidden></p>
+
+<main class="layout">
+  <section class="looks" aria-labelledby="looks-title">
+    <h2 id="looks-title">1 Pick a look</h2>
+    <div id="look-list" class="look-list"></div>
+  </section>
+
+  <section class="viewer" aria-label="Picture">
+    <div id="drop" class="drop">
+      <div class="drop-empty">
+        <p>Drop a photo or a video here (JPEG, PNG, WebP, HEIC where your browser reads it; MP4 or MOV video)</p>
+        <label class="button primary" for="file-input">Open…</label>
+      </div>
+      <canvas id="view" hidden></canvas>
+    </div>
+    <div id="video-bar" class="video-bar" hidden>
+      <button id="play" class="button" type="button">Play</button>
+      <input id="scrub" type="range" min="0" max="1000" step="1" value="0" aria-label="Position in the clip">
+      <output id="time">0:00.0 / 0:00.0</output>
+    </div>
+    <p id="video-note" class="notice" hidden></p>
+    <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif,video/mp4,video/quicktime,video/webm,.mov,.mp4,.m4v" hidden>
+    <div class="viewer-bar">
+      <label class="button" for="file-input">Open…</label>
+      <button id="compare" class="button" type="button" disabled title="Hold to see the original (or hold the \ key)">Hold to compare</button>
+      <span id="status" class="status"></span>
+    </div>
+    <div id="look-info" class="look-info"></div>
+  </section>
+
+  <section class="adjust" aria-labelledby="adjust-title">
+    <h2 id="adjust-title">2 Adjust</h2>
+    <div id="controls" class="controls"></div>
+    <button id="reset" class="button small" type="button">Reset look</button>
+    <h2>3 Export</h2>
+    <div id="photo-export" class="export">
+      <label>Format
+        <select id="export-format">
+          <option value="jpeg">JPEG (small file, for sharing)</option>
+          <option value="png">PNG (lossless, larger)</option>
+        </select>
+      </label>
+      <label id="quality-row">Quality <output id="quality-value">92</output>
+        <input id="export-quality" type="range" min="50" max="100" step="1" value="92">
+      </label>
+      <button id="export-button" class="button primary" type="button" disabled>Export full size</button>
+      <p id="export-note" class="note"></p>
+    </div>
+    <div id="video-export" class="export" hidden>
+      <fieldset class="video-effects">
+        <legend>Video effects</legend>
+        <label><input id="video-on" type="checkbox"> Flicker and frame wobble</label>
+        <label>Flicker <output id="breath-value"></output>
+          <input id="video-breath" type="range" min="0" max="0.3" step="0.005" value="0"></label>
+        <label>Frame wobble <output id="weave-value"></output>
+          <input id="video-weave" type="range" min="0" max="0.002" step="0.00001" value="0"></label>
+      </fieldset>
+      <label>Size
+        <select id="video-size">
+          <option value="0">Original size</option>
+          <option value="1920">1080p (at most 1920 px on the long side)</option>
+        </select>
+      </label>
+      <label>Quality
+        <select id="video-quality">
+          <option value="standard">Standard (smaller file)</option>
+          <option value="high" selected>High</option>
+          <option value="maximum">Maximum (large file)</option>
+        </select>
+      </label>
+      <button id="video-export-button" class="button primary" type="button">Export MP4</button>
+      <button id="video-cancel" class="button" type="button" hidden>Cancel</button>
+      <progress id="video-progress" max="1" value="0" hidden></progress>
+      <p id="video-export-note" class="note"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>The looks are approximations, not measured stock profiles. Names such as "Portra 400 style" describe the look being imitated. They were not measured from film and are not affiliated with any film maker.</p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
