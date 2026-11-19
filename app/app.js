@@ -17,6 +17,7 @@ const state = {
   overrides: {},          // user-changed keys, kept when switching looks
   bitmap: null, fileName: 'photo', preview: null, previewOut: null, pending: false,
   video: null,            // VideoPage; active while a video is open
+  split: { on: true, x: 0.5 }, // before/after divider on screen (as the Mac app: on, in the middle)
 };
 
 function showError(message) {
@@ -76,6 +77,7 @@ function selectLook(look) {
   if (look) state.look = look;
   markSelected();
   updateControls();
+  updateSplit();
   scheduleRender();
 }
 
@@ -86,7 +88,7 @@ let updateControls = () => {};
 function onControl(key, value) {
   const own = getKey(state.look.settings, key, state.doc.filmFormatsMM);
   if (value === own) delete state.overrides[key]; else state.overrides[key] = value;
-  if (state.original) { state.original = false; markSelected(); }
+  if (state.original) { state.original = false; markSelected(); updateSplit(); }
   updateControls();
   scheduleRender();
 }
@@ -128,7 +130,7 @@ function renderPreview() {
   const showOriginal = state.original || state.comparing;
   try {
     if (!showOriginal) state.previewOut = r.render(state.preview, currentSettings());
-    r.present(showOriginal ? state.preview : state.previewOut, $('view').getContext('webgpu'));
+    r.present(showOriginal ? state.preview : state.previewOut, $('view').getContext('webgpu'), presentOptions(state.preview));
     showError('');
   } catch (e) {
     showError(`Could not render this look: ${e.message}`);
@@ -177,7 +179,10 @@ async function openVideo(file) {
   $('view').hidden = false;
   document.body.dataset.state = 'ready';
   $('compare').disabled = false;
+  $('split-toggle').disabled = false;
   updateControls();
+  updateSplit();
+  state.video.redraw();
   renderThumbnails().catch((e) => showError(`Thumbnails failed: ${e.message}`));
 }
 
@@ -207,7 +212,10 @@ async function openFile(file) {
   view.hidden = false;
   document.body.dataset.state = 'ready';
   $('compare').disabled = false;
+  $('split-toggle').disabled = false;
   $('export-button').disabled = false;
+  updateControls();
+  updateSplit();
   $('status').textContent = `${bitmap.width} × ${bitmap.height} px`;
   updateExportNote();
   renderPreview();
@@ -232,6 +240,7 @@ function setComparing(on) {
   if (state.comparing === on) return;
   state.comparing = on;
   $('compare').textContent = on ? 'Original' : 'Hold to compare';
+  updateSplit();
   scheduleRender();
 }
 
@@ -241,6 +250,56 @@ function setupCompare() {
   for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) b.addEventListener(ev, () => setComparing(false));
   window.addEventListener('keydown', (e) => { if (e.key === '\\' && (state.preview || state.video.active)) setComparing(true); });
   window.addEventListener('keyup', (e) => { if (e.key === '\\') setComparing(false); });
+}
+
+// ---- before/after split ---------------------------------------------------------------------
+
+function isSplitShown() {
+  return state.split.on && !state.original && !state.comparing && !!(state.preview || state.video?.active);
+}
+
+/// present() options for the screen: the source left of the divider. Exports never call this.
+function presentOptions(source) {
+  return isSplitShown() ? { before: source, split: state.split.x } : {};
+}
+
+function updateSplit() {
+  const el = $('split');
+  el.hidden = !isSplitShown();
+  el.style.setProperty('--x', `${100 * state.split.x}%`);
+  $('stage').classList.toggle('splitting', isSplitShown());
+  const b = $('split-toggle');
+  b.setAttribute('aria-pressed', String(state.split.on));
+  b.textContent = state.split.on ? 'Split: on' : 'Split: off';
+}
+
+function moveSplit(clientX) {
+  const rect = $('view').getBoundingClientRect();
+  if (rect.width <= 0) return;
+  state.split.x = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+  updateSplit();
+  scheduleRender();
+}
+
+function setupSplit() {
+  $('split-toggle').addEventListener('click', () => {
+    state.split.on = !state.split.on;
+    updateSplit();
+    scheduleRender();
+  });
+  const stage = $('stage');
+  let dragging = null;
+  stage.addEventListener('pointerdown', (e) => {
+    if (!isSplitShown() || e.button > 0) return;
+    dragging = e.pointerId;
+    stage.setPointerCapture(e.pointerId);
+    moveSplit(e.clientX);
+  });
+  stage.addEventListener('pointermove', (e) => { if (dragging === e.pointerId) moveSplit(e.clientX); });
+  for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+    stage.addEventListener(ev, (e) => { if (dragging === e.pointerId) dragging = null; });
+  }
+  updateSplit();
 }
 
 // ---- export ---------------------------------------------------------------------------------
@@ -312,24 +371,22 @@ async function start() {
   state.video = new VideoPage({
     renderer: state.renderer, context: $('view').getContext('webgpu'),
     settings: () => (state.original || state.comparing ? null : currentSettings()),
+    presentOptions,
     lookName: () => state.look.name,
-    setOverride: onControl,
     showError,
     setStatus: (text) => { $('status').textContent = text; },
   });
   buildLookList();
-  updateControls = (() => {
-    const update = buildControls($('controls'), state.doc.basicControls, state.doc.filmFormatsMM, onControl, onRevert);
-    return () => {
-      update(currentSettings(), state.look.settings);
-      state.video.syncEffects(currentSettings());
-    };
-  })();
+  const update = buildControls({ basicRoot: $('controls'), advRoot: $('advanced-controls'),
+    basic: state.doc.basicControls, advanced: state.doc.advancedControls, formats: state.doc.filmFormatsMM,
+    onChange: onControl, onRevert });
+  updateControls = () => update(currentSettings(), state.look.settings, !!state.video?.active);
   markSelected();
   updateControls();
   $('reset').addEventListener('click', () => { state.overrides = {}; updateControls(); scheduleRender(); });
   setupDrop();
   setupCompare();
+  setupSplit();
   setupExport();
 }
 

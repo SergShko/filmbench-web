@@ -1,6 +1,6 @@
-// The video half of the page: open a clip, preview it (play, pause, scrub), set the
-// video effects, export MP4 with progress and Cancel. app.js owns looks and controls
-// and calls in here when the opened file is a video.
+// The video half of the page: open a clip, preview it (play, pause, scrub), export
+// MP4 with progress and Cancel. app.js owns looks and controls (the video effects are
+// in Advanced, Video extras) and calls in here when the opened file is a video.
 
 import { MB, openClip, workingSize, HDR_MESSAGE } from './clip.js';
 import { Player, formatTime } from './player.js';
@@ -14,7 +14,8 @@ export const isVideoFile = (file) => file.type.startsWith('video/') || /\.(mov|m
 
 export class VideoPage {
   /// hooks: { renderer, context, settings() -> LookSettings | null, lookName() -> string,
-  ///          setOverride(key, value), showError(message), setStatus(text) }
+  ///          presentOptions(source) -> present() options (the on-screen split),
+  ///          showError(message), setStatus(text) }
   constructor(hooks) {
     this.hooks = hooks;
     this.clip = null;
@@ -32,7 +33,7 @@ export class VideoPage {
     this.clip = clip;
     this.fileName = file.name.replace(/\.[^.]+$/, '') || 'video';
     this.player = new Player(clip, { renderer: this.hooks.renderer, context: this.hooks.context,
-      settings: this.hooks.settings, onTime: (t) => this._onTime(t), onError: this.hooks.showError });
+      settings: this.hooks.settings, presentOptions: this.hooks.presentOptions, onTime: (t) => this._onTime(t), onError: this.hooks.showError });
     const [w, h] = [this.player.w, this.player.h];
     const view = $('view');
     view.width = w; view.height = h;
@@ -67,16 +68,6 @@ export class VideoPage {
 
   redraw() { if (this.player && !this.player.playing) this.player.redraw(); }
 
-  /// The look's video.* values after a look or control change.
-  syncEffects(s) {
-    $('video-on').checked = !!s.video.enabled;
-    $('video-breath').value = s.video.breath;
-    $('video-weave').value = s.video.gateWeave;
-    $('breath-value').textContent = `${s.video.breath.toFixed(2)} stops`;
-    $('weave-value').textContent = `${(100 * s.video.gateWeave).toFixed(2)} % of width`;
-    for (const id of ['video-breath', 'video-weave']) $(id).disabled = !s.video.enabled;
-  }
-
   // ---- UI -------------------------------------------------------------------------------
 
   _wire() {
@@ -86,9 +77,6 @@ export class VideoPage {
       this.player.pause();
       this.player.seek(this.player.start + (Number($('scrub').value) / SCRUB_STEPS) * this.clip.info.duration);
     });
-    $('video-on').addEventListener('change', () => this.hooks.setOverride('video.enabled', $('video-on').checked));
-    $('video-breath').addEventListener('input', () => this.hooks.setOverride('video.breath', Number($('video-breath').value)));
-    $('video-weave').addEventListener('input', () => this.hooks.setOverride('video.gateWeave', Number($('video-weave').value)));
     $('video-size').addEventListener('change', () => this._updateExportNote());
     $('video-quality').addEventListener('change', () => this._updateExportNote());
     $('video-export-button').addEventListener('click', () => this.export());

@@ -27,7 +27,14 @@
         <p>Drop a photo or a video here (JPEG, PNG, WebP, HEIC where your browser reads it; MP4 or MOV video)</p>
         <label class="button primary" for="file-input">Open…</label>
       </div>
-      <canvas id="view" hidden></canvas>
+      <div id="stage" class="stage">
+        <canvas id="view" hidden></canvas>
+        <div id="split" class="split" hidden aria-hidden="true">
+          <div class="split-line"></div>
+          <span class="split-label split-before">Before</span>
+          <span class="split-label split-after">After</span>
+        </div>
+      </div>
     </div>
     <div id="video-bar" class="video-bar" hidden>
       <button id="play" class="button" type="button">Play</button>
@@ -38,6 +45,7 @@
     <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif,video/mp4,video/quicktime,video/webm,.mov,.mp4,.m4v" hidden>
     <div class="viewer-bar">
       <label class="button" for="file-input">Open…</label>
+      <button id="split-toggle" class="button" type="button" disabled aria-pressed="true" title="Show or hide the before/after divider; drag on the picture to move it">Split: on</button>
       <button id="compare" class="button" type="button" disabled title="Hold to see the original (or hold the \ key)">Hold to compare</button>
       <span id="status" class="status"></span>
     </div>
@@ -47,6 +55,7 @@
   <section class="adjust" aria-labelledby="adjust-title">
     <h2 id="adjust-title">2 Adjust</h2>
     <div id="controls" class="controls"></div>
+    <div id="advanced-controls" class="controls"></div>
     <button id="reset" class="button small" type="button">Reset look</button>
     <h2>3 Export</h2>
     <div id="photo-export" class="export">
@@ -63,14 +72,6 @@
       <p id="export-note" class="note"></p>
     </div>
     <div id="video-export" class="export" hidden>
-      <fieldset class="video-effects">
-        <legend>Video effects</legend>
-        <label><input id="video-on" type="checkbox"> Flicker and frame wobble</label>
-        <label>Flicker <output id="breath-value"></output>
-          <input id="video-breath" type="range" min="0" max="0.3" step="0.005" value="0"></label>
-        <label>Frame wobble <output id="weave-value"></output>
-          <input id="video-weave" type="range" min="0" max="0.002" step="0.00001" value="0"></label>
-      </fieldset>
       <label>Size
         <select id="video-size">
           <option value="0">Original size</option>

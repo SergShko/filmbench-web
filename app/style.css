@@ -50,6 +50,27 @@ body:not([data-state="empty"]) .drop-empty { display: none; }
 .control.changed .revert { visibility: visible; }
 .control.changed label::before { content: "● "; color: var(--accent); }
 
+.control.toggle { grid-template-columns: 1fr auto auto auto; }
+.control.toggle label { grid-column: 1; grid-row: 1; }
+.control.toggle input[type=checkbox] { grid-column: 4; grid-row: 1; justify-self: end; margin: 0; }
+.advanced summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
+.advanced[open] summary { margin-bottom: 4px; }
+.adv-group { border-top: 1px solid var(--line); }
+.adv-group-header { all: unset; cursor: pointer; display: block; width: 100%; padding: 6px 0; font-weight: 600; }
+.adv-group-header::before { content: "▸ "; color: var(--dim); }
+.adv-group-header[aria-expanded="true"]::before { content: "▾ "; }
+.adv-group-header.changed::after { content: " ●"; color: var(--accent); }
+.adv-group-body { display: flex; flex-direction: column; gap: 10px; padding: 2px 0 10px; }
+.adv-group-body[hidden] { display: none; }
+
+.stage { position: relative; display: inline-block; line-height: 0; max-width: 100%; touch-action: pan-y; }
+.split { position: absolute; inset: 0; pointer-events: none; --x: 50%; }
+.split-line { position: absolute; top: 0; bottom: 0; left: var(--x); width: 2px; margin-left: -1px; background: rgba(255,255,255,.85); box-shadow: 0 0 3px rgba(0,0,0,.6); }
+.split-label { position: absolute; top: 8px; line-height: 1.3; font-size: 12px; color: #fff; background: rgba(0,0,0,.55); padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+.split-before { right: calc(100% - var(--x) + 8px); }
+.split-after { left: calc(var(--x) + 8px); }
+.stage.splitting { cursor: ew-resize; }
+
 .export { display: flex; flex-direction: column; gap: 8px; }
 .export label { display: flex; flex-direction: column; gap: 4px; }
 .note { color: var(--dim); margin: 0; font-size: 12px; }
@@ -71,7 +92,6 @@ body:not([data-state="empty"]) .drop-empty { display: none; }
 .video-bar { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; }
 .video-bar input[type=range] { flex: 1; }
 .video-bar output { font-variant-numeric: tabular-nums; min-width: 8.5em; text-align: right; }
-.video-effects { border: 1px solid #0002; border-radius: 6px; padding: 0.4rem 0.6rem; display: grid; gap: 0.3rem; }
 #video-progress { width: 100%; }
 
 [hidden] { display: none !important; }

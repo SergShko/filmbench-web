@@ -1,9 +1,9 @@
 {
  "generated": {
   "by": "web/tools/gen_looks.py",
-  "at": "2026-11-18T22:48:49+00:00",
+  "at": "2026-11-19T17:48:43+00:00",
   "binary": "FilmBench.app/Contents/MacOS/FilmBench",
-  "binarySha256": "3476f6c10ce0d8a8839b008c7b0a6839f7d5c448d7c5b17aa21f313e0f0ec199",
+  "binarySha256": "d9d636c4f7145c729e2b0e93de390b55a97e103b7c183280ea969fbb5d211102",
   "excludedProcesses": [
    "digital"
   ]
@@ -111,7 +111,8 @@
    "min": 2.0,
    "max": 25.0,
    "unit": "percentOfRange",
-   "help": "Fine or coarse grain clumps. Larger grain looks like faster, more sensitive film."
+   "help": "Fine or coarse grain clumps. Larger grain looks like faster, more sensitive film.",
+   "advancedUnit": "micrometres"
   },
   {
    "id": "filmSize",
@@ -167,6 +168,436 @@
    "max": 1.0,
    "unit": "percentOfRange",
    "help": "Darkens the corners to draw the eye to the middle of the picture."
+  }
+ ],
+ "advancedControls": [
+  {
+   "id": "film",
+   "label": "Film",
+   "visibleWhen": {},
+   "controls": [
+    {
+     "id": "process",
+     "key": "film.process",
+     "label": "Film type",
+     "kind": "choice",
+     "options": [
+      {
+       "label": "Colour negative",
+       "value": "negativePrint"
+      },
+      {
+       "label": "Slide",
+       "value": "reversal"
+      },
+      {
+       "label": "Black and white",
+       "value": "blackAndWhite"
+      }
+     ],
+     "help": "Colour negative is soft and forgiving, slide is punchy with dark shadows, black and white drops colour.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "filmOn",
+     "key": "film.enabled",
+     "label": "Film response",
+     "kind": "toggle",
+     "help": "Turns the film's tone and colour response on or off. Off shows the other effects alone.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "midContrast",
+     "key": "film.midContrast",
+     "label": "Film contrast",
+     "kind": "slider",
+     "min": 0.6,
+     "max": 1.6,
+     "step": 0.005,
+     "unit": "plain",
+     "digits": 2,
+     "help": "The film's own contrast in the mid-tones, before printing.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "coupling",
+     "key": "film.coupling",
+     "label": "Colour crosstalk",
+     "kind": "slider",
+     "min": 0.0,
+     "max": 0.5,
+     "step": 0.0025,
+     "unit": "percentOfRange",
+     "help": "How much the film's colour layers affect each other. More gives denser, more separated colours.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "toeSoft",
+     "key": "neg.toeSoftness",
+     "label": "Shadow roll-off",
+     "kind": "slider",
+     "min": 0.05,
+     "max": 0.6,
+     "step": 0.00275,
+     "unit": "percentOfRange",
+     "help": "How gently the shadows fade to black. Higher keeps more detail in the dark areas.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "shoulderSoft",
+     "key": "neg.shoulderSoftness",
+     "label": "Highlight roll-off",
+     "kind": "slider",
+     "min": 0.05,
+     "max": 0.8,
+     "step": 0.00375,
+     "unit": "percentOfRange",
+     "help": "How gently bright areas reach white. Higher keeps more detail in skies and lamps.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "toning",
+     "key": "bw.toneAmount",
+     "label": "Toning",
+     "kind": "slider",
+     "min": 0.0,
+     "max": 1.0,
+     "step": 0.005,
+     "unit": "percentOfRange",
+     "help": "Black and white only: tints the picture brown, like a sepia-toned print.",
+     "visibleWhen": {
+      "processes": [
+       "blackAndWhite"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "printing",
+   "label": "Printing",
+   "visibleWhen": {},
+   "controls": [
+    {
+     "id": "printOn",
+     "key": "print.colorHeadEnabled",
+     "label": "Printer colour trims",
+     "kind": "toggle",
+     "help": "Turns the cyan, magenta, yellow and brightness trims below on or off.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "cyan",
+     "key": "print.cyan",
+     "label": "Cyan trim",
+     "kind": "slider",
+     "min": -12.0,
+     "max": 12.0,
+     "step": 0.12,
+     "unit": "printerPoints",
+     "help": "Adds cyan to the print, or red when negative, as a darkroom printer would.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "magenta",
+     "key": "print.magenta",
+     "label": "Magenta trim",
+     "kind": "slider",
+     "min": -12.0,
+     "max": 12.0,
+     "step": 0.12,
+     "unit": "printerPoints",
+     "help": "Adds magenta to the print, or green when negative.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "yellow",
+     "key": "print.yellow",
+     "label": "Yellow trim",
+     "kind": "slider",
+     "min": -12.0,
+     "max": 12.0,
+     "step": 0.12,
+     "unit": "printerPoints",
+     "help": "Adds yellow to the print, or blue when negative.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "brightness",
+     "key": "print.brightness",
+     "label": "Print brightness",
+     "kind": "slider",
+     "min": -12.0,
+     "max": 12.0,
+     "step": 0.12,
+     "unit": "printerPoints",
+     "help": "Prints the whole picture lighter or darker, keeping the film's contrast.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "densityRange",
+     "key": "print.densityRange",
+     "label": "Print depth",
+     "kind": "slider",
+     "min": 1.5,
+     "max": 3.5,
+     "step": 0.01,
+     "unit": "plain",
+     "digits": 2,
+     "help": "How deep the print's blacks go. Lower looks flatter and greyer.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "shadowTintR",
+     "key": "print.shadowTint.r",
+     "label": "Shadow red",
+     "kind": "slider",
+     "min": 0.8,
+     "max": 1.2,
+     "step": 0.0019999999999999996,
+     "unit": "relativePercent",
+     "help": "More or less red in the shadows only.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "shadowTintB",
+     "key": "print.shadowTint.b",
+     "label": "Shadow blue",
+     "kind": "slider",
+     "min": 0.8,
+     "max": 1.2,
+     "step": 0.0019999999999999996,
+     "unit": "relativePercent",
+     "help": "More or less blue in the shadows only.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "highTintR",
+     "key": "print.highlightTint.r",
+     "label": "Highlight red",
+     "kind": "slider",
+     "min": 0.8,
+     "max": 1.2,
+     "step": 0.0019999999999999996,
+     "unit": "relativePercent",
+     "help": "More or less red in the bright areas only.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "highTintB",
+     "key": "print.highlightTint.b",
+     "label": "Highlight blue",
+     "kind": "slider",
+     "min": 0.8,
+     "max": 1.2,
+     "step": 0.0019999999999999996,
+     "unit": "relativePercent",
+     "help": "More or less blue in the bright areas only.",
+     "visibleWhen": {}
+    }
+   ]
+  },
+  {
+   "id": "halation",
+   "label": "Halation",
+   "visibleWhen": {},
+   "controls": [
+    {
+     "id": "halationOn",
+     "key": "halation.enabled",
+     "label": "Halation",
+     "kind": "toggle",
+     "help": "Turns the red-orange glow around bright lights on or off.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "halThreshold",
+     "key": "halation.threshold",
+     "label": "Starts at brightness",
+     "kind": "slider",
+     "min": 0.0,
+     "max": 1.5,
+     "step": 0.0075,
+     "unit": "plain",
+     "digits": 2,
+     "help": "How bright a light must be before it glows. Lower makes more of the picture glow.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "halKnee",
+     "key": "halation.knee",
+     "label": "Onset softness",
+     "kind": "slider",
+     "min": 0.0,
+     "max": 0.5,
+     "step": 0.0025,
+     "unit": "percentOfRange",
+     "help": "How gradually the glow fades in as lights get brighter.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "halRadius",
+     "key": "halation.radius",
+     "label": "Halation size",
+     "kind": "slider",
+     "min": 0.001,
+     "max": 0.03,
+     "step": 0.000145,
+     "unit": "percentOfWidth",
+     "help": "How far the glow spreads from each light, as a share of picture width.",
+     "visibleWhen": {}
+    }
+   ]
+  },
+  {
+   "id": "glow",
+   "label": "Glow",
+   "visibleWhen": {},
+   "controls": [
+    {
+     "id": "glowOn",
+     "key": "bloom.enabled",
+     "label": "Glow",
+     "kind": "toggle",
+     "help": "Turns the soft haze around bright areas on or off.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "glowRadius",
+     "key": "bloom.radius",
+     "label": "Glow size",
+     "kind": "slider",
+     "min": 0.001,
+     "max": 0.02,
+     "step": 9.499999999999999e-05,
+     "unit": "percentOfWidth",
+     "help": "How far the haze spreads, as a share of picture width.",
+     "visibleWhen": {}
+    }
+   ]
+  },
+  {
+   "id": "grain",
+   "label": "Grain",
+   "visibleWhen": {},
+   "controls": [
+    {
+     "id": "grainOn",
+     "key": "grain.enabled",
+     "label": "Grain",
+     "kind": "toggle",
+     "help": "Turns the film grain on or off.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "grainChroma",
+     "key": "grain.chroma",
+     "label": "Grain colour sync",
+     "kind": "slider",
+     "min": 0.0,
+     "max": 1.0,
+     "step": 0.005,
+     "unit": "percentOfRange",
+     "help": "High makes grain grey and even; low lets each colour have its own grain, which looks more colourful.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "fixedSeed",
+     "key": "grain.fixedSeed",
+     "label": "Frozen grain",
+     "kind": "toggle",
+     "help": "Video: keeps one grain pattern instead of new grain on each frame, which looks like a still.",
+     "visibleWhen": {
+      "media": "video"
+     }
+    }
+   ]
+  },
+  {
+   "id": "finish",
+   "label": "Finish",
+   "visibleWhen": {},
+   "controls": [
+    {
+     "id": "finishOn",
+     "key": "finish.enabled",
+     "label": "Finishing",
+     "kind": "toggle",
+     "help": "Turns contrast, saturation, fade, white level and vignette on or off together.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "whitePoint",
+     "key": "finish.whitePoint",
+     "label": "White level",
+     "kind": "slider",
+     "min": 0.7,
+     "max": 1.0,
+     "step": 0.0015000000000000002,
+     "unit": "percentOfRange",
+     "help": "Lowers the brightest white to a soft grey.",
+     "visibleWhen": {}
+    },
+    {
+     "id": "vignetteSize",
+     "key": "finish.vignetteRadius",
+     "label": "Vignette size",
+     "kind": "slider",
+     "min": 0.0,
+     "max": 1.0,
+     "step": 0.005,
+     "unit": "percentOfRange",
+     "help": "How far from the centre the corners start to darken.",
+     "visibleWhen": {}
+    }
+   ]
+  },
+  {
+   "id": "video",
+   "label": "Video extras",
+   "visibleWhen": {
+    "media": "video"
+   },
+   "controls": [
+    {
+     "id": "videoOn",
+     "key": "video.enabled",
+     "label": "Video effects",
+     "kind": "toggle",
+     "help": "Turns flicker and frame wobble on or off. They only move in video.",
+     "visibleWhen": {
+      "media": "video"
+     }
+    },
+    {
+     "id": "breath",
+     "key": "video.breath",
+     "label": "Flicker",
+     "kind": "slider",
+     "min": 0.0,
+     "max": 0.3,
+     "step": 0.0015,
+     "unit": "stops",
+     "help": "Brightness that wavers from frame to frame, like old projected film.",
+     "visibleWhen": {
+      "media": "video"
+     }
+    },
+    {
+     "id": "weave",
+     "key": "video.gateWeave",
+     "label": "Frame wobble",
+     "kind": "slider",
+     "min": 0.0,
+     "max": 0.002,
+     "step": 1e-05,
+     "unit": "percentOfWidth",
+     "help": "The picture drifts slightly from frame to frame, like film moving through a camera.",
+     "visibleWhen": {
+      "media": "video"
+     }
+    }
+   ]
   }
  ],
  "looks": [

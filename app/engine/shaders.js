@@ -365,3 +365,28 @@ struct VOut { @builtin(position) pos: vec4f, @location(0) uv: vec2f };
   let c = clamp(textureSample(src, samp, i.uv).rgb, vec3f(0.0), vec3f(1.0));
   return vec4f(pow(c, vec3f(invGamma.x)), 1.0);
 }`;
+
+// PRESENT for the before/after divider on screen: `before` left of `split.x`
+// (a share of the width), the look to the right. Never used for exports.
+export const PRESENT_SPLIT = /* wgsl */ `
+@group(0) @binding(0) var src: texture_2d<f32>;
+@group(0) @binding(1) var samp: sampler;
+@group(0) @binding(2) var<uniform> split: vec4f;
+@group(0) @binding(3) var before: texture_2d<f32>;
+struct VOut { @builtin(position) pos: vec4f, @location(0) uv: vec2f };
+@vertex fn vs(@builtin(vertex_index) i: u32) -> VOut {
+  let p = vec2f(f32((i << 1u) & 2u), f32(i & 2u));
+  var o: VOut;
+  o.pos = vec4f(p * 2.0 - 1.0, 0.0, 1.0);
+  o.uv = vec2f(p.x, 1.0 - p.y);
+  return o;
+}
+fn oetf(v: vec3f) -> vec3f {
+  let c = clamp(v, vec3f(0.0), vec3f(1.0));
+  return select(1.055 * pow(c, vec3f(1.0 / 2.4)) - 0.055, c * 12.92, c <= vec3f(0.0031308));
+}
+@fragment fn fs(i: VOut) -> @location(0) vec4f {
+  let after = textureSample(src, samp, i.uv).rgb;
+  let orig = textureSample(before, samp, i.uv).rgb;
+  return vec4f(oetf(select(after, orig, i.uv.x < split.x)), 1.0);
+}`;

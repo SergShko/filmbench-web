@@ -5,6 +5,7 @@
 //   const src = r.importImage(bitmapOrVideoFrame);    // -> linear rgba16float GPUTexture
 //   const out = r.render(src, settings, { frameIndex }); // -> display-linear rgba16float GPUTexture
 //   r.present(out, canvasContext);                    // draw to a canvas (sRGB-encoded)
+//   r.present(out, ctx, { before: src, split: 0.5 }); // on-screen divider: src left of 50 %
 //   const rgba = await r.readSRGB8(out);              // Uint8Array, 8-bit sRGB RGBA, row 0 at top
 //   r.release(tex)                                    // return a texture to the pool
 // `settings` is a LookSettings object as in looks.json. Textures from render() are
@@ -289,18 +290,22 @@ export class FilmRenderer {
       context.__filmFormat = format;
     }
     const power = opts.gamma > 0;
-    const key = `${format}${power ? ' power' : ''}`;
+    const split = !power && opts.before && opts.split !== undefined;
+    const key = `${format}${power ? ' power' : ''}${split ? ' split' : ''}`;
     if (!this.presentPipelines.has(key)) {
-      const module = this.device.createShaderModule({ code: power ? S.PRESENT_POWER : S.PRESENT });
+      const code = power ? S.PRESENT_POWER : (split ? S.PRESENT_SPLIT : S.PRESENT);
+      const module = this.device.createShaderModule({ code });
       this.presentPipelines.set(key, this.device.createRenderPipeline({ layout: 'auto',
         vertex: { module, entryPoint: 'vs' }, fragment: { module, entryPoint: 'fs', targets: [{ format }] } }));
     }
     const pipeline = this.presentPipelines.get(key);
     const entries = [{ binding: 0, resource: tex.createView() }, { binding: 1, resource: this.sampler }];
-    if (power) {
+    const uniform = power ? 1 / opts.gamma : (split ? opts.split : null);
+    if (uniform !== null) {
       this._transient = [];
-      entries.push({ binding: 2, resource: this._uniform(Float32Array.from([1 / opts.gamma, 0, 0, 0])) });
+      entries.push({ binding: 2, resource: this._uniform(Float32Array.from([uniform, 0, 0, 0])) });
     }
+    if (split) entries.push({ binding: 3, resource: opts.before.createView() });
     const bind = this.device.createBindGroup({ layout: pipeline.getBindGroupLayout(0), entries });
     const enc = this.device.createCommandEncoder();
     const pass = enc.beginRenderPass({ colorAttachments: [{ view: context.getCurrentTexture().createView(),
@@ -310,7 +315,7 @@ export class FilmRenderer {
     pass.draw(3);
     pass.end();
     this.device.queue.submit([enc.finish()]);
-    if (power) {
+    if (uniform !== null) {
       const transient = this._transient;
       this.device.queue.onSubmittedWorkDone().then(() => transient.forEach((buf) => buf.destroy()));
       this._transient = null;

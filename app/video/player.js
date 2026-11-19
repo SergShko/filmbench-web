@@ -8,7 +8,7 @@ const PREVIEW_MAX = 1920; // long side of the on-screen render
 
 export class Player {
   /// hooks: { renderer, context (webgpu canvas context), settings() -> LookSettings | null,
-  ///          onTime(seconds), onError(message) }
+  ///          presentOptions(source) -> present() options (on-screen split), onTime(seconds), onError(message) }
   constructor(clip, hooks) {
     this.clip = clip;
     this.hooks = hooks;
@@ -33,7 +33,7 @@ export class Player {
     const s = this.hooks.settings();
     try {
       const out = s ? r.render(this.texture, s, { frameIndex: this.frameIndexAt(this.time) }) : this.texture;
-      r.present(out, this.hooks.context);
+      r.present(out, this.hooks.context, this.hooks.presentOptions?.(this.texture) ?? {});
       if (out !== this.texture) r.release(out);
     } catch (e) {
       this.hooks.onError(`Could not render this look: ${e.message}`);
